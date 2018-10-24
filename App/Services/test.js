@@ -1,4 +1,4 @@
-import testApi from './Api/testApi';
+import testApi from './Api/testAPI';
 
 export default class test {
     constructor() {

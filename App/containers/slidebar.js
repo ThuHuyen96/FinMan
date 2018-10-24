@@ -26,7 +26,7 @@ import {
     Body
   } from "native-base";
 import styles from './styles';
-import {Images} from '../themes';
+import {Images} from '../Themes';
 
 export default class slidemenu extends Component{
     constructor(props) {

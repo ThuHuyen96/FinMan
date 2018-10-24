@@ -25,6 +25,75 @@ import styles from "./styles";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 export default class singin extends Component {
+    constructor(props, context) {
+		super(props, context);
+		this.state = {
+      isLoading: true,
+			username: '',
+			password: '',
+			error: '',
+		};
+		this._onFail = this._onFail.bind(this);
+    }
+//     componentWillMount() {
+// 		BackHandler.addEventListener('hardwareBackPress', function () {
+// 			return true;
+//     });
+//     this._retrieveLoggedUser();
+//   }
+  
+//   _retrieveLoggedUser = () => {
+//     serviceManager.getUserService().retrieveLoggedUser().then(loggedUser => {
+//       if (loggedUser !== null) {
+//         this.setState({
+//           isLoading: false,
+//           username: loggedUser.username,
+//           password: loggedUser.password,
+//         },() => { 
+//           if(this.state.username && this.state.password)
+//             this._login()
+//          });
+//       } else {
+//         this.setState({ isLoading: false });
+//       }
+//     });
+//   }
+    _onChangeUsername = (input) => {
+		this.setState({
+			username: input,
+			error: '',
+		});
+	}
+
+	_onChangePassword = (input) => {
+		this.setState({
+			password: input,
+			error: '',
+		});
+    }
+    _onFail = (message) => {
+		this.setState({ error: message });
+    }
+    _onFailBeforeRequest = (username, password) => {
+		if (!username)
+			this.setState({ error: ("Vui lòng nhập tên đăng nhập") });
+		else
+			if (!password)
+				this.setState({ error: ("Vui lòng nhập mật khẩu") });
+    }
+    _login = () => {
+		if (!this.state.username || !this.state.password) {
+			this._onFailBeforeRequest(this.state.username, this.state.password);
+		}
+		else {
+			this.props.navigation.navigate('SplashScreen',
+				{
+					username: this.state.username,
+					password: this.state.password,
+					onFail: this._onFail,
+				});
+		}
+	}
     render(){
         let ic_logo = {
             uri:
@@ -40,7 +109,8 @@ export default class singin extends Component {
         StatusBar.setBackgroundColor("transparent", true);
         StatusBar.setTranslucent(true);
         }
-        const { navigate } = this.props.navigation;
+        //const { navigate } = this.props.navigation;
+        //onPress={() => navigate("Home")}
 
         return(
             <Container>
@@ -54,8 +124,11 @@ export default class singin extends Component {
                         <Input
                             placeholderTextColor="#ffffff"
                             textAlign={I18nManager.isRTL ? "right" : "left"}
-                            placeholder="Email"
+                            placeholder="UserName"
                             style={styles.inputmain}
+                            keyboardType="default"
+                            value={this.state.username}
+                            onChangeText={this._onChangeUsername.bind(this)}
                         />
                     </Item>
                     <Item rounded style={[styles.inputStyle, { marginTop: 10 }]}>
@@ -65,12 +138,15 @@ export default class singin extends Component {
                             secureTextEntry={true}
                             textAlign={I18nManager.isRTL ? "right" : "left"}
                             style={styles.inputmain}
+                            keyboardType="default"
+                            value={this.state.password}
+                            onChangeText={this._onChangePassword.bind(this)}
                         />
                     </Item>
                     <TouchableOpacity
                     info
                     style={styles.signInbtn}
-                    onPress={() => navigate("Home")}
+                    onPress={() => this._login()}
                     >
                         <Text autoCapitalize="words" style={styles.buttongetstarted}>
                             Sign In

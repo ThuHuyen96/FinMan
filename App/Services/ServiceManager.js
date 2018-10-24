@@ -10,7 +10,9 @@ export class ServiceManager {
         return this.test;
     }
 
-
+    setNavigation(navigation) {
+      this.navigation = navigation;
+    }
     goToScreen(screenName, props) {
         if (this.navigation) {
           const callback = CallbackService.getCallback(screenName);

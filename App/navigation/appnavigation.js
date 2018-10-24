@@ -1,22 +1,23 @@
 import { StackNavigator, DrawerNavigator } from "react-navigation";
-import home from '../containers/home';
-import singin from "../containers/singin";
+import SingInScreen from "../containers/Screens/SingIn/index";
+import Splash from "../containers/Screens/SingIn/Splash";
+import LaunchScreen from '../containers/LaunchScreen';
 
-import test from '../containers/test';
-import slidemenu from '../containers/slidebar';
 
-const mainnav = DrawerNavigator(
+
+const PrimaryNavigator = StackNavigator(
     {
-        Home: { screen: home },
-        SingIn: { screen: singin },
-        
-        test: { screen : test},
-        
+        SingInScreen: { screen: SingInScreen },
+        SplashScreen: { screen: Splash },
+        LaunchScreen: { screen: LaunchScreen },
     },
     {
-        contentComponent: slidemenu,
-        gesturesEnabled: false,
+        headerMode: 'none',
+        initialRouteName: 'SignInScreen',
+        navigationOptions: {
+            gesturesEnabled: false,
+        },
     }
   );
 
-export default mainnav;
+export default PrimaryNavigator;

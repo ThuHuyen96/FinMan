@@ -1,8 +1,13 @@
 import test from './test';
+import UserService from './UserService';
+
 
 export class ServiceManager {
+
     constructor() {
       this.test = new test();
+      this.userService = new UserService();
+      
   
       this.navigation = undefined;
     }
@@ -12,6 +17,10 @@ export class ServiceManager {
 
     setNavigation(navigation) {
       this.navigation = navigation;
+    }
+
+    getUserService() {
+      return this.userService;
     }
     goToScreen(screenName, props) {
         if (this.navigation) {
@@ -27,5 +36,6 @@ export class ServiceManager {
           }
         }
     }
+
 }
 export const serviceManager = new ServiceManager();

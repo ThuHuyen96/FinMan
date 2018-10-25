@@ -23,6 +23,7 @@ Icon,
   } from "native-base";
 import styles from "./styles";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import { Metrics } from '../../../Themes'
 
 export default class singin extends Component {
     constructor(props, context) {
@@ -82,8 +83,9 @@ export default class singin extends Component {
 				this.setState({ error: ("Vui lòng nhập mật khẩu") });
     }
     _login = () => {
+        
 		if (!this.state.username || !this.state.password) {
-			this._onFailBeforeRequest(this.state.username, this.state.password);
+            this._onFailBeforeRequest(this.state.username, this.state.password);     
 		}
 		else {
 			this.props.navigation.navigate('SplashScreen',
@@ -91,7 +93,7 @@ export default class singin extends Component {
 					username: this.state.username,
 					password: this.state.password,
 					onFail: this._onFail,
-				});
+                });
 		}
 	}
     render(){
@@ -143,6 +145,12 @@ export default class singin extends Component {
                             onChangeText={this._onChangePassword.bind(this)}
                         />
                     </Item>
+                    <View>
+                    {
+                    (this.state.error === '') ? null :
+                      <Text style={{ color: 'red',margin:8,backgroundColor:'rgba(255,255,255,0.1)',width: Metrics.WIDTH,textAlign:'center' }}>{this.state.error}</Text>
+                    }
+                    </View>
                     <TouchableOpacity
                     info
                     style={styles.signInbtn}

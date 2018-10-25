@@ -2,6 +2,7 @@ const ApiConstants = {
     baseURL: 'http://10.0.3.2:8000',
     authURL: '/oauth/token',
     testURL: '/api/currentdevice',
+    userURL: '/api/users',
 }
 const LoginConstants = {
     grant_type: "password",

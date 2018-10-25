@@ -1,5 +1,5 @@
 import { Platform, StyleSheet, Dimensions } from "react-native";
-import { Fonts } from '../../../Themes';
+import { Fonts, Colors, Metrics } from '../../Themes';
 
 const styles = StyleSheet.create({
     header: {
@@ -12,9 +12,23 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         borderBottomColor: 'transparent'
     },
+    headerLeft: {
+        flex: 1,
+        width: Metrics.WIDTH * 0.2,
+    },
+    headerIcon: {
+        fontSize: Fonts.moderateScale(28),
+        color: 'white',
+    },
+    headerBody: {
+        flex: 3,
+        alignItems: 'center',
+        width: Metrics.WIDTH * 0.6,
+    },
     content: {
         
     },
+
     footerTabBg: {
         backgroundColor: 'white'
     },

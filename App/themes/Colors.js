@@ -1,4 +1,7 @@
 const Colors = {
+    mainColorTrans: '#660000',
+    headerStartColor: '#4d0000',
+    mainColor: '#ffffff',
     background: '#1F0808',
     clear: 'rgba(0,0,0,0)',
     facebook: '#3b5998',

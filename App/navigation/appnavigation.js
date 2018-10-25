@@ -13,7 +13,7 @@ const PrimaryNavigator = StackNavigator(
     },
     {
         headerMode: 'none',
-        initialRouteName: 'SignInScreen',
+        initialRouteName: 'LaunchScreen',
         navigationOptions: {
             gesturesEnabled: false,
         },
